@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+
+{% block contenido %}
+
+    <fieldset class="descripcion_proyecto">
+        <legend>
+            <span class="fade">Recaudación</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>Descripción</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="fade">Confirmación</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        </legend>
+
+        <article class="descripcion_cabecera">
+            <span class="silver">Datos del proyecto</span>
+            <img src="{% static 'images/flechita.png' %}" alt="flechita" />
+            <span class="gold">Información sobre Pagos</span>
+        </article>
+
+        <section class="wrapper">
+            <form id="f_paso_2" action="{% url 'guardar_paso2' %}" method="post">
+                {% csrf_token %}
+                <div class="fila">
+                    <label for="titular_cuenta">Nombre:</label>
+                    <input id="titular_cuenta" name="titular_cuenta"
+                        type="text" value="" placeholder="Nombre del titular" />
+                    <span></span>
+                </div>
+
+                <div class="fila">
+                    <label for="num_cuenta">Numero de cuenta:</label>
+                    <input id="num_cuenta" name="num_cuenta" type="text" value="" placeholder="Numero de cuenta" />
+                    <span></span>
+                </div>
+
+                <div class="fila">
+                    <label for="rut">Rut:</label>
+                    <input id="rut" name="rut" type="text" value="" placeholder="Rut" />
+                    <span></span>
+                </div>
+
+                <div class="fila">
+                    <label for="banco">Banco:</label>
+                    <select id="banco" name="banco">
+                        <option value='0'>Seleccione banco</option>
+                        {% for banco in bancos %}
+                            <option value="{{ banco.id }}">{{ banco.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                    <span></span>
+                </div>
+
+                <div class="fila">
+                    <label for="tipo_cuenta">Tipo de cuenta:</label>
+                    <select id="tipo_cuenta" name="tipo_cuenta">
+                        <option value='0'>Seleccione tipo de cuenta</option>
+                        {% for tipo_cuenta in tipos_cuentas%}
+                            <option value="{{ tipo_cuenta.id }}">{{ tipo_cuenta.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                    <span></span>
+                </div>
+
+                <div class="btn_accion">
+                    <a href="{% url 'nuevo_proyecto_paso1' tipo_proyecto_id %}">Atrás</a>
+                    <a id="btn_continuar" href="javascript:;">Continuar</a>
+                </div>
+            </form>
+        </section>
+    </fieldset>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/plugins/jquery.Rut.min.js' %}"></script>
+<script src="{% static 'js/controllers/paso2_controller.js' %}"></script>
+<script>
+    if($.storage("flag") == "ok"){
+        window.location.href = "{% url 'dashboard' %}"
+    }
+    App.paso2Controller = new App.Controllers.Paso2();
+</script>
+{% endblock %}

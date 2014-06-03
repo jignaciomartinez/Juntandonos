@@ -1,0 +1,31 @@
+<article class="producto">
+    <div>
+        <input id="nombre_{{ numero }}" name="nombre_{{ numero }}"
+            type="text" placeholder="NOMBRE PRODUCTO/SERVICIO" required />
+    </div>
+
+    <div>
+        <input id="url_{{ numero }}" name="url_{{ numero }}"
+            type="text" placeholder="URL PRODUCTO/SERVICIO" required />
+    </div>
+
+    <div>
+        <input id="descripcion_{{ numero }}" name="descripcion_{{ numero }}"
+            type="text" placeholder="DESCRIPCION" required />
+    </div>
+
+    <div>
+        <input id="imagen_producto_{{ numero }}" name="imagen_producto_{{ numero }}" type="file" value="" required />
+    </div>
+
+    <div class="monto">
+        <select id="tipo_moneda_{{ numero }}" name="tipo_moneda_{{ numero }}" required>
+            {{{ monedas }}}
+        </select>
+        <input id="valor_{{ numero }}" name="valor_{{ numero }}" type="text" value="" />
+    </div>
+
+    <div>
+        <a href="javascript:;" data-accion="eliminar_producto">Eliminar</a>
+    </div>
+</article>

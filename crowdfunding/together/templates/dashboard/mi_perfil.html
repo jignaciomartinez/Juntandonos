@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+    <form id="f_edicion_usuario" action="{% url 'actualizar_usuario' %}"
+        method="post" role="form" class="form-horizontal" style="width:50%;margin:auto">
+    	{% csrf_token %}
+        <div class="form-group">
+            <label for="nombre_usuario">Nombre de usuario:</label>
+            <input class="form-control" readonly name="nombre_usuario" id="nombre_usuario" type="text" value="{{ user.username }}"/>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input class="form-control" name="email" id="email" type="text" value="{{ user.email }}" />
+        </div>
+        <div class="form-group">
+            <label for="first_name">Nombre:</label>
+            <input class="form-control" name="first_name" id="first_name" type="text" value="{{ user.first_name }}" />
+        </div>
+        <div class="form-group">
+            <label for="last_name">Apellidos:</label>
+            <input class="form-control" name="last_name" id="last_name" type="text" value="{{ user.last_name }}" />
+        </div>
+        <div class="form-group">
+            <label for="password_old">Clave actual:</label>
+            <input class="form-control" name="password_old" id="password_old" type="password" />
+        </div>
+        <div class="form-group">
+            <label for="password">Clave nueva:</label>
+            <input class="form-control" name="password" id="password" type="password" />
+        </div>
+        <div class="form-group">
+            <label for="password_repeticion">Repite clave nueva:</label>
+            <input class="form-control" name="password_repeticion" id="password_repeticion" type="password"  />
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-default" value="Guardar cambios" />
+        </div>
+	</form>
+
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+
+{% block contenido %}
+
+<section id="seccion_tipo_proyecto" class="fondo_rayado">
+    <article class="fondo_celeste fondo_punteado">
+        <h2>¡Tenemos opciones para todos los gustos y necesidades!</h2>
+        <p>
+            Elige el tipo de recaudación que mejor se ajuste a tu evento y vas a poder estar a un paso más cerca de hacer tus sueños realidad.
+        </p>
+  </article>
+
+    <fieldset class="marco">
+        <legend>
+            <span><strong>Recaudación</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>Descripción</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>Confirmación</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        </legend>
+        <table>
+            <thead>
+                <th class="w30 p3">CUMPLEAÑOS</th>
+                <th class="w30 p3">EVENTO</th>
+                <th class="w30 p3">BENEFICIO</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="w30 p3">
+                        <p>Reúne el dinero para comprar el regalo que necesitas, haz que todos tus amigos se sumen.</p>
+                        <p>Facilita a tus amigos la tarea de buscar un regalo para ti.</p>
+                        <p>Regalar nunca antes fue tan cómodo y fácil.</p>
+                        <p>Colaborar no tiene fronteras, extiende la invitación a todos tus amigos.</p>
+                    </td>
+                    <td class="w30 p3">
+                        <p>Divide Costos: de carretes, asados, fiestas o regalos,</p>
+                        <p>Mira quien te ha pagado,  aquí nadie se escapa.</p>
+                        <p>Organizar un evento nunca fue tan fácil.</p>
+                        <p>Cuentas claras conservan la amistad.</p>
+                    </td>
+                    <td class="w30 p3">
+                        <p>Reúne dinero para ayudar a tu comunidad o lograr un emprendimiento</p>
+                        <p>Haz campaña y moviliza a tus amigos, colaborar no tiene frontera</p>
+                        <p>Juntándonos generamos impacto en la sociedad</p>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="t_centered">
+                        <a href="{% url 'nuevo_proyecto_paso1' 1 %}">Continuar</a>
+                    </td>
+                    <td class="t_centered">
+                        <a href="{% url 'nuevo_proyecto_paso1' 2 %}">Continuar</a>
+                    </td>
+                    <td class="t_centered">
+                        <a href="{% url 'nuevo_proyecto_paso1' 3 %}">Continuar</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script>
+    $.storage("flag", "nok");
+</script>
+{% endblock %}

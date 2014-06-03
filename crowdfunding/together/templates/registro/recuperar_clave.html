@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+    <section id="contenedor_ingreso" class="t_centered">
+        <section class="iblock w45 t_centered contenedor sombra_caja">
+            <h2>Recuperar contraseña</h2>
+            <form id="f_recuperar_clave" action="{% url 'actualizar_clave' %}" method="post">
+                <div class="fila">
+                    <input id="email" name="email" type="text" value="" placeholder="EMAIL USUARIO" required />
+                    <span></span>
+                </div>
+                <div class="fila">
+                    <input id="repite_email" name="repite_email" type="text" value="" placeholder="REPETIR EMAIL" required />
+                    <span></span>
+                </div>
+                <div>
+                    <input type="submit" value="Enviar" />
+                </div>
+            </form>
+        </section>
+    </section>
+{% endblock %}
+
+{% block js %}
+<script>
+App.Controllers.RecuperarClave = function(){
+    this.$form = $("#f_recuperar_clave");
+    this.$email = $("#email");
+    this.$repiteEmail = $("#repite_email");
+    this.addEvents();
+
+    console.log("entre aqui :)");
+};
+
+App.Controllers.RecuperarClave.prototype = {
+    constructor: App.Controllers.RecuperarClave,
+    addEvents: function(){
+        this.$form.on("submit", this.comprobarEmail.bind(this));
+    },
+
+    comprobarEmail: function(evt){
+        evt.preventDefault();
+
+        var json, valido = true;
+
+        console.log("psh psh psh");
+
+        $(".error_message").removeClass("error_message").text("");
+
+        if(this.$email.val().trim() === ""){
+            valido = false;
+            this.$email.siblings("span").addClass("error_message").text("Debe ingresar email");
+        }
+
+        if(this.$repiteEmail.val().trim() === ""){
+            valido = false;
+            this.$repiteEmail.siblings("span").addClass("error_message").text("Debe ingresar email");
+        }
+
+        if(this.$email.val() !== this.$repiteEmail.val()){
+            valido = false;
+            this.$email.siblings("span").addClass("error_message").text("Los emails no son iguales");
+            this.$repiteEmail.siblings("span").addClass("error_message").text("Los emails no son iguales");
+        }
+
+        if(valido){
+            json = { email : this.$email.val() };
+            alert("enviando solicitud");
+
+            $.post("/registro/actualizar_clave/", json, function(data){
+                if(data.status === "ok"){
+                    alert(data.message);
+                }else{
+                    alert(data.message);
+                }
+            });
+        }
+    }
+};
+
+App.recuperarClave = new App.Controllers.RecuperarClave();
+</script>
+{% endblock %}

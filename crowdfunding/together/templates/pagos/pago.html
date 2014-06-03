@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+    <form id="f_pago" action="{% url 'pago' %}" method="post" class="w70 auto_margin pago_form">
+        {% csrf_token %} 
+        <div>
+            <label for="nombre">Nombre:</label>
+            <input id="nombre" name="nombre" type="text" value="" />
+            <span></span>
+        </div>
+        <div>
+            <label for="email">Mail:</label>
+            <input id="email" name="email" type="text" value="" />
+            <span></span>
+        </div>
+        <div>
+            <label for="monto">Monto:</label>
+            <input id="monto" name="monto" type="text" value="" />
+            <span></span>
+        </div>
+        <div>
+            <label for="mensaje">Mensaje al creador:</label>
+            <textarea name="mensaje" id="mensaje" cols="30" rows="10"></textarea>
+            <span></span>
+        </div>
+
+        <p>OPCIONES DE PAGO</p>
+
+        <div class="iblock2">
+            <input id="tipo_pago_credito" name="tipo_pago" type="radio" value="1" />
+            <img src="{% static 'images/credit.png' %}">
+            <span></span>
+            <input type="submit" value="SIGUIENTE" />
+        </div>
+        <div class="iblock2">
+            <input id="tipo_pago_paypal" name="tipo_pago" type="radio" value="2" />
+            <img src="{% static 'images/paypal.png' %}">
+            <span></span>
+            <input type="submit" value="SIGUIENTE" />
+        </div>
+    </form>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/controllers/pago_controller.js' %}"></script>
+<script>
+    App.pagoController = new App.Controllers.Pago();
+</script>
+{% endblock %}

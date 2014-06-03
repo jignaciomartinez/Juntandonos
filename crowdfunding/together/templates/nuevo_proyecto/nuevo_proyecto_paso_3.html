@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+{% load separador_miles from custom_tags_filters %}
+
+{% block contenido %}
+    <style>
+        .descripcion_proyecto{
+            width: 90%;
+            border: 3px solid #00b9d1;
+        }
+
+        .descripcion_proyecto legend{
+            background-color: #00b9d1;
+        }
+
+        .detalle_proyecto{
+            width: 80%;
+        }
+    </style>
+
+    <fieldset class="descripcion_proyecto">
+        <legend>
+            <span class="fade">Recaudación</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="fade">Descripción</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span><strong>Confirmación</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;
+        </legend>
+        <h2>Confirmación de la creación del proyecto</h2>
+        <p>Vista Previa</p>
+
+     <section class="detalle_proyecto">
+        <article class="detalle">
+            {% for imagenproyecto in proyecto.imagenproyecto_set.all %}
+            <figure class="imagen_proyecto">
+                <img src="{{ MEDIA_URL }}{{ imagenproyecto.imagen }}" alt="imagen de {{ proyecto.titulo }}" />
+            </figure>
+            {% endfor %}
+            <h2 class="titulo_proyecto">{{ proyecto.titulo }}</h2>
+            <div class="descripcion">
+                <h3 class="titulo_descripcion">Descripción</h3>
+                <p>
+                    {{ proyecto.descripcion }}
+                </p>
+            </div>
+            <div>
+                <h2 class="titulo_proyecto">Acerca del proyecto</h2>
+                <h3 class="titulo_descripcion">Descripción extendida</h3>
+                {% for producto in productos %}
+                <div class="producto descripcion">
+                    {% for imagen_proyecto in producto.imagenproducto_set.all %}
+                        <figure>
+                            <img src="{{ imagen_proyecto.imagen.url }}" alt="imagen de {{ producto.nombre }}" />
+                        </figure>
+                    {% endfor %}
+                    <p>{{ producto.descripcion }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </article>
+
+        <article class="informacion">
+            <div class="seccion_recaudacion">
+                <div><span>${{ recaudado|separador_miles }}</span> Recaudado de</div>
+                <div><strong>${{ total|separador_miles }}</strong> en total</div>
+            </div>
+            <div class="seccion_colaboracion">
+                <span>{{ proyecto.get_dias_restantes.days }} días</span> Restantes
+                <span>{{ numero_colaboradores }}</span> Colaboradores
+            </div>
+            <div id="colaboradores">
+                Colaboradores:
+                <p></p>
+                {% for colaborador in proyecto.obtener_lista_colaboradores %}
+                    {{ colaborador.username }}
+                {% endfor %}
+            </div>
+            {% block menu %}
+                {% if user.is_authenticated%}
+                    <a class="seccion_aporte"></a>
+                {% else %}
+                    <a class="seccion_aporte"></a>
+                {% endif %}
+            {% endblock %}
+            <div class="seccion_creador">
+                <figure>
+                    <img src="//graph.facebook.com/{{ proyecto.creador.username }}/picture"
+                        alt="imagen del creador del proyecto {{ proyecto.titulo }}">
+                </figure>
+                <h3 class="titulo_descripcion">{{ proyecto.creador }}</h3>
+            </div>
+        </article>
+    </section>
+
+        <div style="text-align:center">
+            <a href="{% url 'dashboard' %}" class="btn btn-primary">Confirmar</a>
+        </div>
+    </fieldset>
+{% endblock %}
+
+{% block js %}
+<script>
+    $.storage("flag", "ok");
+    alert("Si vuelve atrás perderá todos los datos de su proyecto");
+</script>
+{% endblock %}

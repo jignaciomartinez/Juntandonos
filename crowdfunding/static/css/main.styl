@@ -1,0 +1,720 @@
+@font-face
+    font-family 'social'
+    src url('../fonts/social.eot')
+    src url('../fonts/social.eot?#iefix') format('embedded-opentype'), url('../fonts/social.woff') format('woff'), url('../fonts/social.ttf') format('truetype'), url('../fonts/social.svg#social') format('svg')
+    font-weight normal
+    font-style normal
+
+celeste = #00b9d1
+naranjo = #ff942d
+rosado = #fa006a
+amarillo = #ffd800
+calipso = #00aef0
+amarillo_oscuro = #f7d000
+
+/*
+font-family: 'Lobster', cursive;
+font-family: 'Varela Round', sans-serif;
+font-family: 'Exo 2', sans-serif;
+*/
+
+box_style()
+    box-sizing border-box
+    display inline-block
+    vertical-align top
+
+limitar(ancho)
+    margin auto
+    max-width ancho
+
+body
+    background-color #f5f5f5
+    font-family 'Varela Round', sans-serif
+    font-size 16px
+    margin auto
+    max-width 1200px
+
+header
+    background linear-gradient(to bottom, #fbd200 0%, #f8b800 100%)
+    border-bottom 5px solid rosado
+    padding 0 0 1em
+    position relative
+    text-align center
+
+    .menu
+        background url('../images/barra_fondo.png') repeat-y
+        border-radius 0 0 0.4em 0.4em
+        box-shadow 0 0 10px #000
+        font-family 'Exo 2', sans-serif
+        margin auto
+        padding 1em 0
+        width 60%
+
+        .logo
+            box_style()
+            cursor pointer
+
+            img
+                width 170px
+
+        .menu_opciones
+            display none
+
+            #sobre_juntandonos
+                background-color white
+                display none
+                position absolute
+                top 0
+                z-index 1
+
+                aside
+                    display inline-block
+                    position relative
+                    vertical-align top
+                    width 50%
+                    &:last-child
+                        width 45%
+
+                    p
+                        text-align left
+
+            figure
+                display inline-block
+                position relative
+                vertical-align top
+
+                img
+                    position absolute
+                    top -10px
+                    width 135px
+                    z-index 1
+
+                    &:hover
+                        cursor pointer
+
+    .menu_navegacion
+        margin-top 1em
+        li
+            display inline-block
+            vertical-align top
+
+            a
+                background-color white
+                padding 0.5em 1em
+                text-decoration none
+
+#bg_home
+    background url("../images/crowd_party.jpg")
+    background-position fixed
+    background-size 100%
+    border-bottom 5px solid #fa006a
+
+#contenedor_ingreso
+    background-color amarillo_oscuro
+    background-image url(../images/background_login.png)
+    background-size 100% 100%
+    margin auto
+    width 90%
+
+    section
+        margin 1em
+
+    .contenedor
+        border-radius 20px
+        position relative
+
+        &:after
+            content ""
+            border-left 15px solid transparent
+            border-right 15px solid transparent
+            border-top 15px solid white
+            position absolute
+            top 100%
+            left calc(50% - 15px)
+
+        div
+            margin 0.5em 0
+
+            input[type="text"],
+            input[type="password"]
+                border 1px solid #999
+                border-radius 5px
+                padding 0.5em
+
+            input[type="submit"]
+                background celeste
+                border 0
+                color white
+                border-radius 5px
+                padding 0.5em 1em
+        h2
+            color rosado
+            font-family 'Lobster', sans-serif
+
+#formulario_registro
+#login_facebook
+.login_usuario
+    border-radius 1em
+    box-sizing border-box
+    display inline-block
+    margin 2em 1em
+    padding 1em
+    vertical-align top
+    width 25%
+
+#formulario_registro
+    border 3px solid rosado
+    text-align left
+
+    h3
+        color rosado
+        text-align center
+
+    .fila
+        input[type="password"],
+        input[type="text"]
+            border 1px solid silver
+            border-radius 5px
+
+        label
+            color #555
+            display block
+            font-weight bold
+            min-width 160px
+            text-align left
+
+        p
+            font-weight lighter
+            color #999999
+
+        select
+            width 65px
+
+
+    input[type="submit"]
+        background-color rosado
+        border 0
+        border-radius 5px
+        color white
+        padding 0.2em 2em
+
+#login_facebook
+    border 3px solid amarillo
+
+    h3
+        color amarillo
+
+#seccion_tipo_proyecto
+    article
+        color white
+        padding 2em 1em
+        text-align center
+        text-shadow 1px 2px #444
+
+    th:last-child
+        vertical-align bottom
+
+#slider
+    background-color calipso
+    background-image url('../images/bg_slider.jpg')
+    background-position left top
+    background-size 100%
+    background-repeat repeat-y
+    margin auto
+    min-height 300px
+    padding 1em
+    text-align center
+    width 70%
+
+    h2, p
+        text-align center
+
+    h2
+        color rosado
+
+    img
+        width 200px
+
+    .globo_texto
+        limitar(500px)
+        background white
+        border-radius 10px
+        padding 1em
+        position relative
+
+        &:after
+            border-left 15px solid transparent
+            border-right 15px solid transparent
+            border-top 15px solid white
+            content ""
+            left 50%
+            margin-left -15px
+            position absolute
+            top 100%
+
+#terminos_condiciones
+    border 3px solid rosado
+    border-radius 20px
+    margin auto
+    margin-top 3em
+    padding 1em
+    width 70%
+
+    h1
+        color rosado
+        font-size 1.5em
+        text-align center
+
+.auto_margin
+    margin auto
+
+.btn_facebook
+    background #1e62a9
+    border 1px solid #143f72
+    border-bottom-width 2px
+    border-radius 5px
+    color white
+    cursor pointer
+    display inline-block
+    padding 0.5em 1em
+
+    &:before
+        content "\e601"
+        font-family 'social'
+        position relative
+        right 0.5em
+
+    &:hover
+        background #366ab2
+
+.buscador
+    border-bottom 5px solid pink
+    padding 1em
+    text-align center
+
+    .caja_busqueda
+        border none
+        border-radius 5px
+        color rosado
+        padding 0.5em
+
+
+.categorias
+    box_style()
+    border 3px solid #00c0f3
+    padding 2em
+    text-align center
+    width 30%
+
+    h1
+        color #fc00a0
+        font-family 'Lobster', cursive
+        text-shadow 1px 2px 1px #999
+
+.contenedor
+    background-color #f9f9f9
+    border-radius 7px
+    margin-top 2em
+    padding 1em
+
+.descripcion_proyecto
+    border 3px solid gold
+    border-radius 1em
+    margin 1em auto
+    padding 0
+    width 70%
+
+    legend
+        background gold
+        border-radius 7px
+        color white
+        padding 0.5em 1em
+        text-align center
+        width 80%
+
+        .fade
+            opacity 0.7
+
+    .descripcion_cabecera
+        bottom 1em
+        background white
+        border-radius 7px 7px 0 0
+        padding 2em
+        position relative
+        text-align center
+        z-index -1
+
+        img
+        span.gold,
+        span.silver
+            position relative
+            top 0.5em
+            vertical-align top
+
+        img
+            width 27px
+
+        span.gold
+            color gold
+
+        span.silver
+            color silver
+
+    .lista_productos
+        clear right
+
+        .producto
+            background-color white
+            border 2px solid gold
+            border-radius 0.5em
+            margin 1em 0
+            padding 0.7em
+            position relative
+
+            input[type="text"]
+                border-radius 5px
+                display inline-block
+                margin 0.3em 0
+                width 270px
+
+            .monto
+                position absolute
+                right 0
+                top 0
+
+    .wrapper
+        background url("../images/bg_box.png")
+        border-radius 1em
+        padding 1em
+
+        #btn_otro_producto
+            display block
+            float right
+            margin 1em 0
+            text-decoration none
+
+            span
+                border 2px solid gold
+                border-radius 50%
+                color gold
+                padding 0 5px
+
+        .btn_accion
+            margin 1em 0
+            text-align right
+            a
+                background-color gold
+                border-radius 5px
+                color white
+                padding 0.5em 1em
+                text-decoration none
+
+        .calculo_precio
+            margin 0.5em 0
+            text-align right
+
+            input[type="text"]
+                border 1px solid gold
+                border-radius 5px
+
+        .fila
+            margin 0.5em 0
+
+            input[type="text"],
+            textarea
+                border-radius 5px
+
+            label
+                display inline-block
+                width 100px
+
+        .lado_a
+        .lado_b
+            display inline-block
+            vertical-align top
+
+.detalle_proyecto
+    border 3px solid celeste
+    border-radius 1em
+    margin 1em auto
+    width 70%
+
+    article
+        box_style()
+        width 49.71%
+
+    .detalle
+        .descripcion
+            padding-left 1em
+
+    .informacion
+        background url("../images/barra_celeste.png")
+        border-radius 0 12px 12px 0
+        padding 0.5em
+
+    .imagen_proyecto
+        text-align center
+
+        img
+            border 3px solid celeste
+            width 200px
+
+    .producto
+        background celeste
+        border-radius 0.5em
+        color white
+        margin 0.5em auto
+        padding 1em
+        width 90%
+
+        figure
+            display inline-block
+            img
+                width 100px
+
+    .seccion_aporte
+        border 1px solid white
+        border-radius 5px
+        background celeste
+        color blue
+        display block
+        margin 1em 0
+        padding 1em
+        text-decoration none
+
+    .seccion_creador
+        background url("../images/bg_box.png")
+        border 1px solid celeste
+        border-radius 5px
+        padding 1em
+
+        figure
+        h3
+            box_style()
+
+    .seccion_colaboracion,
+    .seccion_recaudacion
+        background white
+        border 1px solid celeste
+        border-radius 5px
+        margin 0.5em 0
+        padding 0.5em
+
+        span, strong
+            color celeste
+
+    .titulo_descripcion
+        color celeste
+
+    .titulo_proyecto
+        background-color celeste
+        border-radius 0 5px 5px 0
+        color white
+        padding-left 1em
+
+.error_message
+    color #D15538
+
+.fondo_calipso
+    background calipso
+
+.fondo_celeste
+    background celeste
+
+.fondo_naranjo
+    background naranjo
+
+.fondo_rosado
+    background rosado
+
+.fondo_punteado
+    background url("../images/bg_slider.jpg")
+    background-size 100%
+
+.fondo_rayado
+    background url("../images/mainbg.jpg")
+    background-size 100%
+
+.formulario
+    margin auto
+    width 60%
+    .fila
+        padding 0.3em
+
+        label
+            display inline-block
+            min-width 140px
+
+        select
+            width 180px
+
+.iblock
+    box-sizing border-box
+    display inline-block
+    vertical-align top
+
+.login_usuario
+    border 3px solid celeste
+    text-align left
+
+    input[type="password"],
+    input[type="text"]
+        border-radius 5px
+        width 100%
+
+    input[type="submit"]
+        background-color celeste
+        border 0
+        border-radius 5px
+        color white
+        display block
+        margin 1em auto
+        padding 0.5em 1em
+        text-align center
+
+    h3
+        color celeste
+
+    label
+        display block
+        margin 0.5em 0
+
+    span
+        display block
+        a
+            color celeste
+
+.marco
+    background-color white
+    border 4px solid rosado
+    border-radius 10px
+    margin auto
+    margin-top 3em
+    width 70%
+
+    a
+        background-color rosado
+        border-radius 5px
+        color white
+        display inline-block
+        margin-top 0.5em
+        padding 0.5em 1em
+        text-decoration none
+
+    legend
+        background-color rosado
+        border-radius 0.5em
+        color white
+        padding 0.5em 3em
+        text-align center
+        width 80%
+
+    table
+        margin auto
+        width 90%
+
+        thead
+            tr
+                th
+                    color rosado
+
+.pago_form
+    border 3px solid rosado
+    margin 1em auto
+    padding 1em
+
+    div
+        label
+            width 200px
+
+        input[type="text"],textarea
+            border 2px solid rosado
+            border-radius 5px
+
+.proyectos
+    box_style()
+    width 69%
+
+    .proyecto
+        box_style()
+        border 5px solid #00a0ff
+        border-radius 5px
+        cursor pointer
+        margin 0.5em
+        padding 0.5em
+        width 250px
+        min-height 600px
+
+        &:hover
+            border 5px solid #fc00a0
+
+        .imagen_proyecto
+            img
+                width 100%
+
+        .imagen_user
+            float left
+            position relative
+            top -10px
+
+            img
+                width 50px
+
+        .nombre_usuario
+            color #fb54b3
+            margin 0
+            text-transform capitalize
+
+        .proyecto_porcentaje
+            background linear-gradient(to right, #fcd800 0%, #e72623 100%)
+            color white
+            padding 0 0.5em
+            text-align right
+
+        .proyecto_recaudacion
+            color #666666
+            text-align right
+
+        .proyecto_restante
+            color #666666
+
+        .proyecto_titulo
+            color #00a0ff
+            font-size 1.2em
+
+.sombra_caja
+    box-shadow 3px 3px 1px #ebebeb
+
+.t_centered
+    text-align center
+
+.texto_blanco
+    color white
+
+for i in (10..100)
+    s(".w%s{width:%s%;}", i, i)
+
+@media screen and (min-width: 768px)
+    header
+        .menu
+            width 90%
+            .menu_opciones
+                box_style()
+
+                .link_aportar,.link_entrar,.link_evento,.link_registro
+                    box_style()
+                    text-decoration none
+                    padding 0.5em
+
+                .link_aportar, .link_evento
+                    border-radius 0.5em
+                    color white
+
+                .link_entrar,.link_registro
+                    color black
+
+                .link_aportar
+                    background-color rosado
+
+                .link_evento
+                    background-color calipso

@@ -1,0 +1,119 @@
+{% load static from staticfiles %}
+<!doctype html>
+<html lang="es">
+<head>
+	<title>Juntándonos</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no" />
+        <link rel="shortcut icon" href="images/logo.png">
+        <meta name="keywords" content="crowdfunding, latinoamerica, juntandonos, creadores, cumpleaños, proyectos, financiamiento colectivo" />
+        <meta name="author" content="Juntandonos" />
+        <meta name="google-site-verification" content="" />
+		<meta name="description" content="El sitio web de financiamiento colectivo para tus proyectos." />
+    <title>{% block titulo %}{% endblock %}</title>
+    <link href='http://fonts.googleapis.com/css?family=Lobster|Varela+Round|Exo+2:400,700'
+        rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}" />
+    {% block css %}{% endblock %}
+</head>
+<body>
+    <header>
+        <div class="menu">
+            <figure class="logo" onclick="window.location.href='{% url 'index' %}'">
+                <img src="{% static 'images/logo.png' %}" alt="logo de juntándonos" />
+            </figure>
+
+            <div class="menu_opciones">
+                <a href="{% url 'registro' %}" class="link_evento sombra_caja">COMENZAR UN EVENTO</a>
+                <a href="{% url 'ingresar' %}" class="link_entrar">
+                    <img src="{% static 'images/entrar.png' %}" alt="imagen entrar" />
+                    Entrar
+                </a>
+                <article id="sobre_juntandonos">
+                    <aside>
+                    <h4 style="color:#2180CE">¡Juntándonos podemos lograrlo!</h4>
+                        <p>En juntandonos podrás:</p>
+                        <p>
+                            Desarrollar proyectos de emprendimiento o de apoyo a tu comunidad.
+                        </p>
+                        <p>
+                            Juntar dinero para regalos de cumpleaños, matrimonios, fiestas, etc.
+                        </p>
+                        <p>
+                            Dividir costos carretes, asados, fiestas, vacaciones, etc.
+                        </p>
+                        <p>
+                            Se parte de esta plataforma <span style="color:#FA006A;">creando tu evento.</span>
+                      </p>
+                      <br>
+                      <br>
+                      <br>
+                      </aside>
+                    </aside>
+
+                    <aside>
+                        <div id="videoquees">
+                        aca va el video
+                        </div>
+                        <div id="comofunciona">
+                        COMO FUNCIONA</div>
+                    </aside>
+                </article>
+                <figure>
+                    <img id="quees" src="{% static 'images/que_es_juntandonos.png' %}" alt="¿ qué es juntandonos ?" />
+                </figure>
+            </div>
+        </div>
+        {% block menu %}
+            {% if user.is_authenticated %}
+                {% include "mi_menu.html" %}
+            {% endif %}
+        {% endblock %}
+    </header>
+
+    {% block contenido %}NO SE HA SOBREESCRITO CONTENIDO{% endblock %}
+
+    <footer>
+        <div class="img"></div>
+        <input id="foo" type="hidden" value="{{ csrf_token }}" />
+    </footer>
+
+    <script src="{% static 'js/vendor/jquery-2.0.3.min.js' %}"></script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/vendor/rlay_core.js' %}"></script>
+    <script src="{% static 'js/vendor/handlebars-1.1.2.min.js' %}"></script>
+    <script src="{% static 'js/vendor/template_loader.js' %}"></script>
+    <script src="{% static 'js/vendor/storage.js' %}"></script>
+    <script src="{% static 'js/plugins/jquery.storage.min.js' %}"></script>
+    <script src="{% static 'js/init.js' %}"></script>
+    <script>
+        App.Controllers.Home = function(){
+            this.queEs = $("#quees");
+            this.sobreJuntandonos = $("#sobre_juntandonos");
+            this.init();
+        };
+
+        App.Controllers.Home.prototype = {
+            constructor: App.Controllers.Home,
+            init: function(){
+                var _this = this;
+
+                this.queEs.on("click",function(){
+                    if(_this.sobreJuntandonos.is(":hidden")){
+                        $(this).css("top","+=260px");
+                        _this.sobreJuntandonos.show();
+                    }else{
+                        _this.sobreJuntandonos.hide();
+                        $(this).css("top","-=260px");
+                    }
+                });
+            }
+        };
+
+        App.homeController = new App.Controllers.Home();
+    </script>
+    {% block js %}{% endblock %}
+</body>
+</html>

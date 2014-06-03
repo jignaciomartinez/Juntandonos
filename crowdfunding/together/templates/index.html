@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load separador_miles from custom_tags_filters %}
+
+{% block contenido %}
+
+<section id="bg_home">
+    <section id="slider">
+        <section id="inner_slide" class="globo_texto categorias">
+            <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                </ol>
+
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <figure>
+                            <img src="{% static 'images/slider_1.png' %}" alt="Imagen 1" height="100%" />
+                        </figure>
+                    </div>
+
+                    <div class="item">
+                        <figure>
+                            <img src="{% static 'images/slider_2.png' %}" alt="Imagen 2" height="100%" />
+                        </figure>
+                    </div>
+
+                    <div class="item">
+                        <figure>
+                            <img src="{% static 'images/slider_3.png' %}" alt="Imagen 2" height="100%" />
+                        </figure>
+                    </div>
+                </div>
+
+                <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+                <a class="right carousel-control" href="#carousel-example-generic" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                </a>
+            </div>
+        </section>
+    </section>
+</section>
+
+<section class="fondo_rayado-home">
+    <section id="proyectos" class="proyectos">
+        {% for proyecto in proyectos %}
+            <article class="proyecto" onclick="window.location.href='{% url 'ver_proyecto' id_proyecto=proyecto.id %}'">
+                {% for imagen_proyecto in proyecto.imagenproyecto_set.all %}
+                <figure class="imagen_proyecto">
+                    <img src="{{ MEDIA_URL }}{{ imagen_proyecto.imagen }}" alt="imagen proyecto" />
+                </figure>
+                {% endfor %}
+
+                <figure class="imagen_user">
+                    <img src="//graph.facebook.com/{{ proyecto.creador.username }}/picture" alt="imagen user" />
+                </figure>
+
+                <p class="nombre_usuario">{{ proyecto.get_nombre_creador }}</p>
+                <p>{{ proyecto.tipo_proyecto.nombre }}</p>
+                <p class="proyecto_titulo">{{ proyecto.titulo|upper }}</p>
+                <p class="proyecto_descripcion">{{ proyecto.descripcion }}</p>
+                <p class="proyecto_recaudacion">recaudó ${{ proyecto.get_monto_actual|separador_miles }}</p>
+                <p class="proyecto_porcentaje">{{ proyecto.get_porcentaje_actual }}%</p>
+                <p class="proyecto_restante">{{ proyecto.get_dias_restantes.days }} días restantes</p>
+            </article>
+        {% endfor %}
+</section>
+
+<section id="categorias" class="categorias lateral">
+    <h1>Categorías</h1>
+    <select name="sel_categoria" id="sel_categoria">
+        <option value="0">TODOS</option>
+        {% for categoria in categorias %}
+        <option value="{{ categoria.id }}">{{ categoria.nombre }}</option>
+        {% endfor %}
+    </select>
+</section>
+</section>
+
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/controllers/categorias_controller.js' %}"></script>
+<script src="{% static 'js/controllers/login_controller.js' %}"></script>
+<script>
+    App.categoriasController = new App.Controllers.Categoria("{% url 'obtener_proyectos' 99 %}");
+    App.login = new App.Controllers.Login();
+</script>
+
+{% endblock %}

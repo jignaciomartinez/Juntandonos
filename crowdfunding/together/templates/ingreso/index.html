@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block contenido %}
+    <section id="contenedor_ingreso" class="t_centered">
+        <section class="iblock w45 t_centered contenedor sombra_caja">
+            <h2>Iniciar Sesión</h2>
+            <form id="f_login_normal" action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div>
+                    <input id="usr_login" name="username" type="text" value="" placeholder="Usuario:" />
+                    <span></span>
+                </div>
+                <div>
+                    <input id="pwd_login" name="password" type="password" value="" placeholder="Contraseña:" />
+                </div>
+                <input type="checkbox" value="1" />
+                Recordarme
+                <br></br>
+                <a href="{% url 'recuperar_clave' %}">RECUPERAR CONTRASEÑA</a>
+                <div>
+                    <input type="submit" class="sombra_caja" value="Ingresar" />
+              </div>
+            </form>
+        </section>
+
+        <section class="iblock w45 t_centered contenedor sombra_caja" style="height:238px">
+            <h2>Iniciar sesión con Facebook</h2>
+            <div>
+               <p></p> <a class="btn_facebook sombra_caja" href="{% url 'socialauth_begin' 'facebook' %}">Entra con Facebook</a>
+                <p></p>
+            </div>
+        </section>
+    </section>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/controllers/facebook_login.js' %}"></script>
+<script src="{% static 'js/controllers/login_controller.js' %}"></script>
+<script>
+    App.login = new App.Controllers.Login();
+</script>
+{% endblock %}

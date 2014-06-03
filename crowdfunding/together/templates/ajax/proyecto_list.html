@@ -1,0 +1,19 @@
+{{#each proyectos}}
+<article class="proyecto" onclick="window.location.href='/dashboard/proyecto_detalle/{{ id }}/'">
+    <figure class="imagen_proyecto">
+        <img src="{{ imagenProyecto }}" alt="imagen proyecto" />
+    </figure>
+
+    <figure class="imagen_user">
+        <img src="//graph.facebook.com/{{ avatarUsername }}/picture" alt="imagen user" />
+    </figure>
+
+    <p class="nombre_usuario">{{ nombreCreador }}</p>
+    <p>{{ tipoProyecto }}</p>
+    <p class="proyecto_titulo">{{ proyecto.titulo }}</p>
+    <p class="proyecto_descripcion">{{ proyecto.descripcion }}</p>
+    <p class="proyecto_recaudacion">recaudó ${{ proyecto.montoActual }} USD</p>
+    <p class="proyecto_porcentaje">{{ proyecto.porcentajeActual }}%</p>
+    <p class="proyecto_restante">{{ proyecto.diasRestantes }} días restantes</p>
+</article>
+{{/each}}

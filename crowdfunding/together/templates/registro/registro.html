@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+{% load i18n %}
+
+{% block contenido %}
+
+<section class="t_centered fondo_rayado">
+
+<section id="f_login_normal" class="login_usuario">
+    <form action="{% url 'login' %}" method="post">
+        <h3>¿ YA ERES USUARIO ?</h3>
+
+        <label for="usr_login">Nombre usuario</label>
+        <input id="usr_login" type="text" value="" />
+
+        <label for="pwd_login">Contraseña</label>
+        <input id="pwd_login" type="password" value="" />
+
+        <span>
+            <a href="{% url 'recuperar_clave' %}">RECUPERAR CONTRASEÑA</a>
+        </span>
+
+        <input type="checkbox" value="1" />
+        Recordarme
+
+        <input type="submit" class="sombra_caja" value="INGRESAR" />
+    </form>
+</section>
+
+<section id="login_facebook">
+    <h3>LOGIN CON FACEBOOK</h3>
+    <div>
+        <a class="btn_facebook sombra_caja" href="{% url 'socialauth_begin' 'facebook' %}">Entra con Facebook</a>
+    </div>
+</section>
+
+<section id="formulario_registro" class="formulario">
+    <h3>¿ NUEVO EN JUNTANDONOS ?</h3>
+    <form id="f_registro" action="{% url 'envio' %}" method="post">
+        {% csrf_token %}
+        <div class="fila">
+            <label for="nombre_usuario">Nombre de usuario: </label>
+            <input id="nombre_usuario" name="nombre_usuario" type="text" required />
+            <span></span>
+        </div>
+        <div class="fila">
+            <label for="email">Email: </label>
+            <input id="email" name="email" type="text" required />
+            <span></span>
+        </div>
+        <div class="fila">
+            <label for="password">Contraseña:</label>
+            <input id="password" name="password" type="password" value="" required />
+            <p>Entre 6 y 50 caracteres</p>
+            <span></span>
+        </div>
+        <div class="fila">
+            <label for="repeat">Repita contraseña: </label>
+            <input id="repeat" type="password" value="" required />
+            <span></span>
+        </div>
+        <div class="fila">
+            <label for="sexo">Sexo:</label>
+            Hombre <input type="radio" name="sexo" value="1" />
+            Mujer <input type="radio" name="sexo" value="0" />
+            <span></span>
+        </div>
+        <div class="fila">
+            <label for="">Fecha de nacimiento:</label>
+            <select name="dia" id="dia">
+                {% for dia in dias %}
+                <option value="{{ dia }}">{{ dia }}</option>
+                {% endfor %}
+            </select>
+            <select name="mes" id="mes">
+                {% for mes in meses %}
+                <option value="{{ mes.valor }}">{% trans mes.nombre %}</option>
+                {% endfor %}
+            </select>
+            <select name="anio" id="anio">
+                {% for anio in anios %}
+                <option value="{{ anio }}">{{ anio }}</option>
+                {% endfor %}
+            </select>
+            <span style="display:block"></span>
+        </div>
+        <div class="t_centered">
+            <input id="chk_aceptar_terminos" type="checkbox" value="" /> He aceptado los términos y condiciones
+        </div>
+        <div id="caja_registrarse" class="t_centered" style="display:none">
+            <input type="submit" class="sombra_caja" value="REGISTRARSE" />
+        </div>
+    </form>
+</section>
+
+</section>
+{% endblock %}
+
+{% block js %}
+<script src="{% static 'js/plugins/jquery.Rut.min.js' %}"></script>
+<script src="{% static 'js/controllers/registro_controller.js' %}"></script>
+<script src="{% static 'js/controllers/login_controller.js' %}"></script>
+<script>
+    App.registroController = new App.Controllers.Registro();
+    App.loginController = new App.Controllers.Login();
+
+    $("#chk_aceptar_terminos").on("click",function(evt){
+        if($(this).is(":checked")){
+            $("#caja_registrarse").show();
+        }else{
+            $("#caja_registrarse").hide();
+        }
+    });
+</script>
+{% endblock %}

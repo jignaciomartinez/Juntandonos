@@ -1,0 +1,18 @@
+<nav class="menu_navegacion">
+    <ul>
+        <li>
+        	<figure style="margin-top: -.7em">
+                <img src="//graph.facebook.com/{{ user.username }}/picture" alt="imagen de" />
+            </figure>
+        </li>
+        <li>
+            <a href="{% url 'dashboard' %}">Mis proyectos</a>
+        </li>
+        <li>
+            <a href="{% url 'mi_perfil' %}">Mi perfil</a>
+        </li>
+        <li>
+            <a href="{% url 'logout' %}">Salir</a>
+        </li>
+    </ul>
+</nav>

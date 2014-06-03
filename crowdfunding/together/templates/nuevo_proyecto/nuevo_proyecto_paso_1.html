@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/datepicker.css' %}" />
+{% endblock %}
+
+{% block contenido %}
+    <div class="fondo_rosado texto_blanco t_centered" style="padding:1em">
+        <p>¡Comparte tus eventos con el mundo!</p>
+        <p>Estás a 2 pasos de empezar armar tu gran ocasión y cumplir tu meta</p>
+    </div>
+
+<section>
+
+    <fieldset class="descripcion_proyecto">
+        <legend>
+            <span class="fade">Recaudación</span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span><strong>Descripción</strong></span>&nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="fade">Confirmación</span>&nbsp;&nbsp;&nbsp;&nbsp;
+        </legend>
+
+        <article class="descripcion_cabecera">
+            <span class="gold">Datos del proyecto</span>
+            <img src="{% static 'images/flechita.png' %}" alt="flechita" />
+            <span class="silver">Información sobre Pagos</span>
+        </article>
+
+        <section class="wrapper">
+            <h3>
+                <img src="{% static 'images/datosgenerales.png' %}" alt="icono de lapiz" width="32" /> Datos generales
+            </h3>
+
+            <form id="f_paso_1" action="{% url 'guardar_paso1' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="lado_a">
+                    <div class="fila">
+                        <label for="titulo">*Título:</label>
+                        <input id="titulo" name="titulo" type="text" value="" />
+                    </div>
+
+                    <div class="fila">
+                        <label for="descripcion">*Descripción:</label>
+                        <textarea id="descripcion" name="descripcion" cols="30" rows="5" placeholder="Máximo 140 caracteres"></textarea>
+                        
+                    </div>
+
+                    <div class="fila">
+                        <label for="thumbnail">*Imagen del proyecto:</label>
+                        <input id="thumbnail" name="thumbnail" type="file" value="" />
+                    </div>
+
+                    
+                </div>
+
+                <div class="lado_b">
+                    <div class="fecha">
+                        <label for="fecha">Fecha Límite:</label>
+                        <input id="fecha" name="fecha" type="text" value="" data-date-format="dd-mm-yyyy" />
+                    </div>
+                </div>
+
+                <section id="lista_productos" class="lista_productos">
+                    <h3><img src="{% static 'images/ampolleta.png' %}" alt="icono de ampolleta" width="32" />Datos del proyecto</h3>
+                   
+                    </div>
+                   <article class="producto">
+                        <div class="lado_a">
+                            <div class="fila">
+                              <p>
+                                <label for="video">Video:</label>
+                                <input id="video" name="video" type="text" value="" placeholder="Video" />
+                              </p>
+                              <p>
+                                <label>Descripción Ampliada:</label>
+                                <textarea name="descripcion_producto" id="descripcion_producto" cols="30" rows="5" placeholder="Descripción"></textarea>
+                              </p>
+                            </div>
+                    <div class="fila">
+                        <div class="fila">
+                            <label>Imagen de descripción:</label>
+                            <input id="imagen_producto_0" name="imagen_producto_0" type="file" value="" />
+                        </div>
+                    </div>
+                        <div  class="lado_b">
+                            <div class="monto">
+                                <label for="tipo_moneda_0">*Monto:</label>
+                                
+                                <input id="tipo_moneda_0" type="hidden" value="2">
+                                <input id="valor_0" name="valor_0" type="text" value="" />                            
+                            </div>
+                        </div>
+                  </article>
+                </section>
+                <input id="con_impuesto" name="con_impuesto" type="hidden" value="" readonly />
+                <input id="duracion" name="duracion" type="hidden" value="" />
+
+                <div class="btn_accion">
+                    <a href="{% url 'tipo_proyecto' %}">Atras</a>
+                    <a id="btn_continuar" href="javascript:;">Continuar</a>
+                </div>
+            </form>
+        </section>
+    </fieldset>
+
+</section>
+{% endblock %}
+{% block js %}
+<script src="{% static 'js/plugins/bootstrap-datepicker.js' %}"></script>
+<script src="{% static 'js/controllers/paso1_controller.js' %}"></script>
+<script>
+    App.paso1 = new App.Controllers.Paso1({{ cantidad_impuesto }});
+</script>
+{% endblock %}

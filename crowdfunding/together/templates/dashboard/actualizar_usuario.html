@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block contenido %}
+	{% if status_form = "ok" %}
+		{% if status_pass = "ok" %}
+			
+       Su clave ha sido cambida
+       <br></br>
+       <a href="{% url 'index' %}" id="sombra_caja2">Volver</a>
+		{% endif %}
+		
+        Cambios realizados
+        <br></br>
+        <a href="{% url 'index' %}" id="sombra_caja2">Volver</a>        
+	
+    {% else %}
+    Algo ah fallado
+        <br></br>
+        <a href="{% url 'index' %}" id="sombra_caja2">Volver</a>  
+              
+	{% endif %}
+
+{% endblock %}
